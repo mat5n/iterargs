@@ -34,4 +34,5 @@ To create a production build run:
 
 Copyright © 2022 mat5n
 
-Distributed under the Eclipse Public License, Version 2.0.
+Distributed under the Eclipse Public License, Version 2.0, except for
+the files below `resources` which are distributed under the MIT License.
