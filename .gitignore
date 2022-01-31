@@ -1,0 +1,14 @@
+/resources/public/cljs-out/
+figwheel_server.log
+.rebel_readline_history
+pom.xml
+*jar
+/lib/
+/classes/
+/out/
+/target/
+.lein-deps-sum
+.lein-repl-history
+.lein-plugins/
+.repl
+.nrepl-port

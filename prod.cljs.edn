@@ -1,0 +1,3 @@
+{:main iterargs.core
+ :optimizations :advanced
+ :infer-externs false}
