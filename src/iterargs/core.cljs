@@ -36,4 +36,4 @@
     (catch ExceptionInfo e
       (iterargs.error/handle-init-error! e))))
 
-(defonce init-call (init!))
+(defonce init-call (do (init!) true))

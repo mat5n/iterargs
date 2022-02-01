@@ -166,18 +166,20 @@
      (remove-stale-highlights! owner))))
 
 (defn transition-handler! [before after]
-  (if (= (:doc before) (:doc after))
-    (update-classes! before after)
-    (do (remove-stale-highlights!)
-        (update-classes! before after)
-        (add-event-listeners!)))
+  (when (not= (:doc before) (:doc after))
+    (remove-stale-highlights!)
+    (add-event-listeners!))
+  (update-classes! before after)
   (when (:hl after)
     (scroll-to-highlights!
       (-> after :hl :id)
       (-> after :hl :target-side))))
 
-(defn init! []
+(defn reinit! []
   (remove-stale-highlights!)
   (add-event-listeners!)
-  (state/register! transition-handler!)
   (update-classes! nil @state/state))
+
+(defn init! []
+  (state/register! transition-handler!)
+  (reinit!))

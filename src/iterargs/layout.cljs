@@ -1,12 +1,14 @@
 (ns ^:figwheel-hooks iterargs.layout
   (:require
    [iterargs.animation :as anim]
-   [iterargs.config :refer [cfg]]
+   [iterargs.config :as config :refer [cfg]]
    [iterargs.doc :as doc]
    [iterargs.dom :as dom]
    [iterargs.gesture :as gesture]
    [iterargs.help :as help]
+   [iterargs.highlight :as highlight]
    [iterargs.icon :as icon]
+   [iterargs.link :as link]
    [iterargs.menu :as menu]
    [iterargs.menu-state :as menu-state]
    [iterargs.navbar :as navbar]
@@ -141,7 +143,10 @@
 
 (defn ^:after-load on-reload []
   (mount-root!)
-  #_(insert-doc!))
+  (insert-doc!)
+  (link/reinit!)
+  (highlight/reinit!)
+  (config/call-hook-fns! :reload))
 
 ;;;; API
 

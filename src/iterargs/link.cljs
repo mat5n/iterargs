@@ -76,16 +76,18 @@
       (util/timeout! delay
         #(goog.style/scrollIntoContainerView elt (elt-container elt-id) true)))))
 
+(defn reinit! []
+  (log-broken-links!)
+  (add-event-listeners!))
+
 (defn transition-handler! [before after]
   (when (not= (:doc before) (:doc after))
-    (log-broken-links!)
-    (add-event-listeners!))
+    (reinit!))
   (when-let [link (:link after)]
     (flash-elt! (:target link))
     (when (and state/*replay* (:source link))
       (flash-elt! (:source link)))))
 
 (defn init! []
-  (log-broken-links!)
-  (add-event-listeners!)
-  (state/register! transition-handler!))
+  (state/register! transition-handler!)
+  (reinit!))

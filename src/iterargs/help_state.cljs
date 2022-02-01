@@ -2,7 +2,7 @@
   (:require
    [reagent.core :as r]))
 
-(def open? (r/atom false))
+(defonce open? (r/atom false))
 
 ;;;; API
 
